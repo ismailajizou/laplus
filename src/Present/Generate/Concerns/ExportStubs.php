@@ -54,7 +54,11 @@ trait ExportStubs
         // Index
 
         foreach ($migration->indexes->removed as [$index, $from]) {
-            $up[] = "\$table->dropIndex({$this->writeObject($index)});";
+            if ($from->name === 'foreign') {
+                $up[] = "\$table->dropForeign({$this->writeObject($index)});";
+            } else {
+                $up[] = "\$table->dropIndex({$this->writeObject($index)});";
+            }
             $down[] = $this->writeCommand($from);
         }
 
@@ -65,7 +69,11 @@ trait ExportStubs
 
         foreach ($migration->indexes->added as $name => $index) {
             $up[] = $this->writeCommand($index);
-            $down[] = "\$table->dropIndex({$this->writeObject($name)});";
+            if ($index->name === 'foreign') {
+                $down[] = "\$table->dropForeign({$this->writeObject($name)});";
+            } else {
+                $down[] = "\$table->dropIndex({$this->writeObject($name)});";
+            }
         }
 
         return new MigrationFileState(

@@ -15,8 +15,8 @@ trait Indexes
      * Specify the primary key(s) for the table.
      *
      * @param string|array $columns
-     * @param null $name
-     * @param null $algorithm
+     * @param $name
+     * @param $algorithm
      * @return Index
      */
     public function primary($columns, $name = null, $algorithm = null): Index
@@ -96,8 +96,8 @@ trait Indexes
      * Specify an index for the table.
      *
      * @param string|array $columns
-     * @param null $name
-     * @param null $algorithm
+     * @param $name
+     * @param $algorithm
      * @return Index
      */
     public function index($columns, $name = null, $algorithm = null): Index

@@ -109,6 +109,20 @@ trait MigrationGenerates
 
             foreach ($blueprint->getColumns() as $column) {
                 $table->columns[$column->name] = $column;
+
+                if ($column->primary) {
+                    $table->indexes[$tableName . '_' . $column->name . '_primary'] = new Fluent([
+                        "name" => "primary",
+                        "columns" => [$column->name],
+                        "algorithm" => null,
+                    ]);
+                } elseif ($column->fulltext) {
+                    $table->indexes[$tableName . '_' . $column->name . '_fulltext'] = new Fluent([
+                        "name" => "fulltext",
+                        "columns" => [$column->name],
+                        "algorithm" => null,
+                    ]);
+                }
             }
 
             foreach ($blueprint->getCommands() as $command) {

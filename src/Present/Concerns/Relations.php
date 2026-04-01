@@ -29,7 +29,7 @@ trait Relations
      * @param string $columnType
      * @return BelongsToAttr
      */
-    public function foreignTo(string $model, string $foreignKey = null, string $ownerKey = null, string $columnType = 'unsignedBigInteger')
+    public function foreignTo(string $model, ?string $foreignKey = null, ?string $ownerKey = null, string $columnType = 'unsignedBigInteger')
     {
         return $this->belongsTo($model, null, $foreignKey, $ownerKey, $columnType)->excludeAttr();
     }
@@ -44,7 +44,7 @@ trait Relations
      * @param string $columnType
      * @return BelongsToAttr
      */
-    public function belongsTo(string $model, string $relation = null, string $foreignKey = null, string $ownerKey = null, string $columnType = 'unsignedBigInteger')
+    public function belongsTo(string $model, ?string $relation = null, ?string $foreignKey = null, ?string $ownerKey = null, string $columnType = 'unsignedBigInteger')
     {
         $model = $model::getPresentableInstance();
 
@@ -66,7 +66,7 @@ trait Relations
      * @param string|null $localKey
      * @return HasOneAttr
      */
-    public function hasOne(string $model, string $relation = null, string $foreignKey = null, string $localKey = null)
+    public function hasOne(string $model, ?string $relation = null, ?string $foreignKey = null, ?string $localKey = null)
     {
         $model = $model::getPresentableInstance();
 
@@ -86,7 +86,7 @@ trait Relations
      * @param string|null $localKey
      * @return HasManyAttr
      */
-    public function hasMany(string $model, string $relation = null, string $foreignKey = null, string $localKey = null)
+    public function hasMany(string $model, ?string $relation = null, ?string $foreignKey = null, ?string $localKey = null)
     {
         $model = $model::getPresentableInstance();
 
@@ -111,12 +111,12 @@ trait Relations
      */
     public function belongsToMany(
         string $model,
-        string $relation = null,
-        string $pivot = null,
-        string $foreignPivotKey = null,
-        string $relatedPivotKey = null,
-        string $parentKey = null,
-        string $relatedKey = null,
+        ?string $relation = null,
+        ?string $pivot = null,
+        ?string $foreignPivotKey = null,
+        ?string $relatedPivotKey = null,
+        ?string $parentKey = null,
+        ?string $relatedKey = null,
     )
     {
         $model = $model::getPresentableInstance();
@@ -144,11 +144,11 @@ trait Relations
     public function hasOneThrough(
         string $related,
         string $through,
-        string $relation = null,
-        string $firstKey = null,
-        string $secondKey = null,
-        string $localKey = null,
-        string $secondLocalKey = null,
+        ?string $relation = null,
+        ?string $firstKey = null,
+        ?string $secondKey = null,
+        ?string $localKey = null,
+        ?string $secondLocalKey = null,
     )
     {
         $related = $related::getPresentableInstance();
@@ -181,11 +181,11 @@ trait Relations
     public function hasManyThrough(
         string $related,
         string $through,
-        string $relation = null,
-        string $firstKey = null,
-        string $secondKey = null,
-        string $localKey = null,
-        string $secondLocalKey = null,
+        ?string $relation = null,
+        ?string $firstKey = null,
+        ?string $secondKey = null,
+        ?string $localKey = null,
+        ?string $secondLocalKey = null,
     )
     {
         $related = $related::getPresentableInstance();
@@ -211,7 +211,7 @@ trait Relations
      * @param string|null $indexName
      * @return MorphsAttr
      */
-    public function morphsId(string $name, string $relation = null, string $indexName = null)
+    public function morphsId(string $name, ?string $relation = null, ?string $indexName = null)
     {
         return $this->morphs(...func_get_args())->excludeAttr();
     }
@@ -224,7 +224,7 @@ trait Relations
      * @param string|null $indexName
      * @return MorphsAttr
      */
-    public function morphs(string $name, string $relation = null, string $indexName = null)
+    public function morphs(string $name, ?string $relation = null, ?string $indexName = null)
     {
         $relation ??= $name;
 
@@ -282,9 +282,9 @@ trait Relations
      * @return MorphToManyAttr
      */
     public function morphToMany(
-        string $related, string $name, string $relation, string $pivot = null, string $foreignPivotKey = null,
-        string $relatedPivotKey = null, string $parentKey = null,
-        string $relatedKey = null, bool $inverse = false,
+        string $related, string $name, string $relation, ?string $pivot = null, ?string $foreignPivotKey = null,
+        ?string $relatedPivotKey = null, ?string $parentKey = null,
+        ?string $relatedKey = null, bool $inverse = false,
     )
     {
         $related = $related::getPresentableInstance();
@@ -312,9 +312,9 @@ trait Relations
      * @return MorphToManyAttr
      */
     public function morphedByMany(
-        string $related, string $name, string $relation, string $pivot = null, string $foreignPivotKey = null,
-        string $relatedPivotKey = null, string $parentKey = null,
-        string $relatedKey = null,
+        string $related, string $name, string $relation, ?string $pivot = null, ?string $foreignPivotKey = null,
+        ?string $relatedPivotKey = null, ?string $parentKey = null,
+        ?string $relatedKey = null,
     )
     {
         $related = $related::getPresentableInstance();

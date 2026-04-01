@@ -180,4 +180,21 @@ class GenerateChangesTest extends TestCase
                 ]],
             ]);
     }
+
+    public function test_no_changes_with_column_level_primary()
+    {
+        MigrationGenerator::test()
+            ->previousTable('password_reset_tokens', function (Blueprint $table) {
+                $table->string('email')->primary();
+                $table->string('token');
+                $table->timestamp('created_at')->nullable();
+            })
+            ->newModel('password_reset_tokens', function (Present $present) {
+                $present->string('email')->primary();
+                $present->string('token');
+                $present->timestamp('created_at')->nullable();
+            })
+            ->export()
+            ->assertFileCount(0);
+    }
 }

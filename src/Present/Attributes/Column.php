@@ -228,7 +228,7 @@ class Column extends Attribute
      * @param bool|string|null $indexName
      * @return $this
      */
-    public function index(bool|string $indexName = null)
+    public function index(bool|string|null $indexName = null)
     {
         $this->columnIndex = ['index', $indexName];
 
@@ -278,7 +278,7 @@ class Column extends Attribute
      * @param bool|string|null $indexName
      * @return $this
      */
-    public function fulltext(bool|string $indexName = null)
+    public function fulltext(bool|string|null $indexName = null)
     {
         $this->columnIndex = ['fullText', $indexName];
 
@@ -291,7 +291,7 @@ class Column extends Attribute
      * @param bool|string|null $indexName
      * @return $this
      */
-    public function spatialIndex(bool|string $indexName = null)
+    public function spatialIndex(bool|string|null $indexName = null)
     {
         $this->columnIndex = ['spatialIndex', $indexName];
 
@@ -329,7 +329,7 @@ class Column extends Attribute
      * @param bool|string|null $indexName
      * @return $this
      */
-    public function unique(bool|string $indexName = null)
+    public function unique(bool|string|null $indexName = null)
     {
         $this->columnIndex = ['unique', $indexName];
 
